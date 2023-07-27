@@ -1,10 +1,22 @@
-<script setup lang="ts">
-import { inject } from 'vue'
-import { RouterLink } from 'vue-router'
-import type { Member } from '@/interfaces'
+<script setup lang = "ts">
+import { computed } from "vue";
+import { RouterLink } from 'vue-router';
+import type { Member } from "@/interfaces";
+import { useMembersStore } from "@/stores/members";
 
-const memberList = inject('memberList') as Map<number, Member>
-</script>
+const membersStore = useMembersStore();
+
+const memberList = computed((): Map<number, Member> => {
+  return membersStore.memberList;
+});
+
+// <script setup lang="ts">
+// import { inject } from 'vue'
+// import { RouterLink } from 'vue-router'
+// import type { Member } from '@/interfaces'
+
+// const memberList = inject('memberList') as Map<number, Member>
+// </script>
 
 <template>
   <h1>会員管理</h1>
